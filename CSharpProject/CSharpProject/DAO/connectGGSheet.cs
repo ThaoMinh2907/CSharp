@@ -12,7 +12,7 @@ namespace CSharpProject.DAO
         public static SheetsService GetSheetsService()
         {
             // Đường dẫn đến tệp JSON chứa thông tin xác thực OAuth 2.0
-            string credentialFilePath = "/Users/minhthao/CSharp/CSharpProject/CSharpProject/CSharpProject/DAO/credentials.json";
+            string credentialFilePath = "./DAO/credentials.json";
 
             // Xác thực với tệp JSON
             GoogleCredential credential;

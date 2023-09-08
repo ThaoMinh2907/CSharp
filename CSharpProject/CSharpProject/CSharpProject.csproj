@@ -19,12 +19,14 @@
     <None Remove="DAO\" />
     <None Remove="BUS\" />
     <None Remove="GUI\" />
+    <None Remove="Database\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTO\" />
     <Folder Include="DAO\" />
     <Folder Include="BUS\" />
     <Folder Include="GUI\" />
+    <Folder Include="Database\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="DAO\credentials.json">
