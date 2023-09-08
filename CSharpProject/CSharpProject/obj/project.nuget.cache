@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bm8c69Mh5rSuJ3ltu3ejJ3RhPu4BjdcBOl3yw5xyOviNhLiv7eMhHi61zO9Mqtx6Bc8WV4MrxZhcn9KaaZS9sQ==",
+  "dgSpecHash": "aq50QQpGPGlST5YaSNiO//GZwei7N7TePJxEWiLjPdlw49VtLTvixO6G5DD66q+lNPJDW3zPRZxuuOx762QIGg==",
   "success": true,
-  "projectFilePath": "/Users/minhthao/Projects/CSharpProject/CSharpProject/CSharpProject.csproj",
+  "projectFilePath": "/Users/minhthao/CSharp/CSharpProject/CSharpProject/CSharpProject/CSharpProject.csproj",
   "expectedPackageFiles": [
     "/Users/minhthao/.nuget/packages/google.apis/1.62.0/google.apis.1.62.0.nupkg.sha512",
     "/Users/minhthao/.nuget/packages/google.apis.auth/1.62.0/google.apis.auth.1.62.0.nupkg.sha512",
