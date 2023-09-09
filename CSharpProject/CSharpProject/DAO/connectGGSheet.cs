@@ -32,17 +32,14 @@ namespace CSharpProject.DAO
             return service;
         }
 
-        public static void ReadDataFromGoogleSheets()
+        static readonly string spreadsheetId = "1bGW9P2L3RjTP9N_0V035-bE2jyv8ahaGSSpECleQdQ4";
+
+        public static IList<IList<object>> ReadDataFromGoogleSheets(String sheet_name)
         {
             try
             {
                 var sheetsService = GetSheetsService();
-
-                // Bây giờ bạn có thể sử dụng sheetsService để thực hiện các thao tác trên Google Sheets.
-                // Ví dụ: Đọc dữ liệu từ một bảng tính
-
-                string spreadsheetId = "1bGW9P2L3RjTP9N_0V035-bE2jyv8ahaGSSpECleQdQ4";
-                string range = "demodata!A1:B2"; // Thay đổi vùng dữ liệu cần đọc
+                string range = sheet_name; // Vùng dữ liệu cần đọc
                 SpreadsheetsResource.ValuesResource.GetRequest request =
                     sheetsService.Spreadsheets.Values.Get(spreadsheetId, range);
 
@@ -51,24 +48,51 @@ namespace CSharpProject.DAO
 
                 if (values != null && values.Count > 0)
                 {
-                    foreach (var row in values)
-                    {
-                        foreach (var col in row)
-                        {
-                            Console.Write($"{col} ");
-                        }
-                        Console.WriteLine();
-                    }
+                    Console.WriteLine("Hoàn thành.");
+                    return values;
                 }
                 else
                 {
                     Console.WriteLine("Không tìm thấy dữ liệu.");
+                    return new List<IList<object>>();
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Lỗi khi đọc dữ liệu từ Google Sheets: " + ex.Message);
             }
+            return new List<IList<object>>();
+        }
+
+        public static void WriteDataToGoogleSheets(string sheet_name, List<IList<object>> valuesToWrite)
+        {
+            try
+            {
+                var sheetsService = GetSheetsService();
+
+                // Định dạng vùng dữ liệu bạn muốn ghi vào
+                string range = sheet_name ; // Vùng dữ liệu cần ghi
+
+                // Tạo đối tượng ValueRange để chứa dữ liệu cần ghi
+                var valueRange = new ValueRange
+                {
+                    Values = valuesToWrite
+                };
+
+                // Gọi API để cập nhật dữ liệu
+                SpreadsheetsResource.ValuesResource.UpdateRequest request =
+                    sheetsService.Spreadsheets.Values.Update(valueRange, spreadsheetId, range);
+                request.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.RAW;
+
+                UpdateValuesResponse response = request.Execute();
+                Console.WriteLine("Dữ liệu đã được ghi vào Google Sheets.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi ghi dữ liệu vào Google Sheets: " + ex.Message);
+            }
         }
     }
 }
+
+

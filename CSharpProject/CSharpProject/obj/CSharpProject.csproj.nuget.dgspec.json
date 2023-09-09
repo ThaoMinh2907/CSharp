@@ -38,6 +38,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "DocumentFormat.OpenXml": {
+              "target": "Package",
+              "version": "[2.20.0, )"
+            },
+            "EPPlus": {
+              "target": "Package",
+              "version": "[6.2.9, )"
+            },
             "Google.Apis": {
               "target": "Package",
               "version": "[1.62.0, )"
@@ -49,6 +57,10 @@
             "Google.Apis.Sheets.v4": {
               "target": "Package",
               "version": "[1.62.0.3148, )"
+            },
+            "Microsoft.Office.Interop.Excel": {
+              "target": "Package",
+              "version": "[15.0.4795.1001, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",
