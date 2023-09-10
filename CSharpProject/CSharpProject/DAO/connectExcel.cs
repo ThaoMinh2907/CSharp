@@ -1,57 +1,61 @@
-﻿using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
-using Microsoft.Office.Interop.Excel;
-//using Microsoft.Office.Interop.Excel.
+﻿using System;
+using OfficeOpenXml;
 
-public class ExcelConnector
+namespace CSharpProject.DAO
 {
-    private string filePath;
-
-    public ExcelConnector(string filePath)
-    {
-        this.filePath = filePath;
-    }
-
-    public void WriteDataToExcel(string[] headers, string[][] data)
-    {
-        using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Create(filePath, SpreadsheetDocumentType.Workbook))
-        {
-            WorkbookPart workbookPart = spreadsheetDocument.AddWorkbookPart();
-            workbookPart.Workbook = new DocumentFormat.OpenXml.Spreadsheet.Workbook();
-
-            WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
-            worksheetPart.Worksheet = new DocumentFormat.OpenXml.Spreadsheet.Worksheet(new SheetData());
-
-            SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
-
-            // Thêm dòng tiêu đề
-            Row headerRow = new Row();
-            foreach (string header in headers)
-            {
-                headerRow.Append(CreateCell(header));
-            }
-            sheetData.AppendChild(headerRow);
-
-            // Thêm dữ liệu từ mảng hai chiều
-            foreach (string[] row in data)
-            {
-                Row dataRow = new Row();
-                foreach (string value in row)
-                {
-                    dataRow.Append(CreateCell(value));
-                }
-                sheetData.AppendChild(dataRow);
-            }
-
-            workbookPart.Workbook.Save();
+	public class connectExcel
+	{
+         
+		public connectExcel()
+		{
+			
         }
-    }
+		public static void exportDataToExcel(string path, String sheet_name, IList<IList<object>> data) {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            // Tạo một tệp Excel mới
+            //var newFile = new FileInfo("/CSharpProject/CSharpProject/CSharpProject/DAO/Excel/demo2.xlsx");
+            var newFile = new FileInfo(path);
+            using (var package = new ExcelPackage(newFile))
+            {
+                // Tạo một trang tính (worksheet) mới
+                // Kiểm tra xem trang tính có tồn tại trong tệp Excel không
+                bool sheetExists = package.Workbook.Worksheets.Any(sheet => sheet.Name == sheet_name);
+                if (sheetExists)
+                {
+                    // Delete the worksheet
+                    package.Workbook.Worksheets.Delete(package.Workbook.Worksheets[sheet_name]);
+                }
+                var worksheet = package.Workbook.Worksheets.Add(sheet_name);
+                int i = 0;
+                foreach (var rows in data)
+                {
+                    i++;
+                    int j = 0;
+                    foreach (var col in rows)
+                    {
+                        j++;
+                        worksheet.Cells[i, j].Value = $"{col} "; 
+                    }
+                }
+                //// Ghi dữ liệu vào ô A1
+                //worksheet.Cells["A1"].Value = "Tên";
+                //// Ghi dữ liệu vào ô B1
+                //worksheet.Cells["B1"].Value = "Tuổi";
 
-    private Cell CreateCell(string value)
-    {
-        Cell cell = new Cell(new InlineString(new Text(value)));
-        cell.DataType = CellValues.InlineString;
-        return cell;
-    }
+                //// Ghi dữ liệu vào ô A2
+                //worksheet.Cells["A2"].Value = "John";
+                //// Ghi dữ liệu vào ô B2
+                //worksheet.Cells["B2"].Value = 38;
+
+                //// Ghi dữ liệu vào ô A3
+                //worksheet.Cells["A3"].Value = "Alice";
+                //// Ghi dữ liệu vào ô B3
+                //worksheet.Cells["B3"].Value = 25;
+
+                // Lưu tệp Excel
+                package.Save();
+            }
+        }
+	}
 }
+
