@@ -37,21 +37,6 @@ namespace CSharpProject.DAO
                         worksheet.Cells[i, j].Value = $"{col} "; 
                     }
                 }
-                //// Ghi dữ liệu vào ô A1
-                //worksheet.Cells["A1"].Value = "Tên";
-                //// Ghi dữ liệu vào ô B1
-                //worksheet.Cells["B1"].Value = "Tuổi";
-
-                //// Ghi dữ liệu vào ô A2
-                //worksheet.Cells["A2"].Value = "John";
-                //// Ghi dữ liệu vào ô B2
-                //worksheet.Cells["B2"].Value = 38;
-
-                //// Ghi dữ liệu vào ô A3
-                //worksheet.Cells["A3"].Value = "Alice";
-                //// Ghi dữ liệu vào ô B3
-                //worksheet.Cells["B3"].Value = 25;
-
                 // Lưu tệp Excel
                 package.Save();
             }
