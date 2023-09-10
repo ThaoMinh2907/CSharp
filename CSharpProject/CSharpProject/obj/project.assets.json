@@ -1824,11 +1824,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/minhthao/CSharp/CSharpProject/CSharpProject/CSharpProject/CSharpProject.csproj",
+      "projectUniqueName": "/Users/minhthao/CSharp/CSharpWinform/CSharpProject/CSharpProject/CSharpProject.csproj",
       "projectName": "CSharpProject",
-      "projectPath": "/Users/minhthao/CSharp/CSharpProject/CSharpProject/CSharpProject/CSharpProject.csproj",
+      "projectPath": "/Users/minhthao/CSharp/CSharpWinform/CSharpProject/CSharpProject/CSharpProject.csproj",
       "packagesPath": "/Users/minhthao/.nuget/packages/",
-      "outputPath": "/Users/minhthao/CSharp/CSharpProject/CSharpProject/CSharpProject/obj/",
+      "outputPath": "/Users/minhthao/CSharp/CSharpWinform/CSharpProject/CSharpProject/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/minhthao/.nuget/NuGet/NuGet.Config"
