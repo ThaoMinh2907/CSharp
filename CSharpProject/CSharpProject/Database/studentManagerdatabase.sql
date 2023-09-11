@@ -46,16 +46,24 @@ CREATE TABLE [Class] (
   CONSTRAINT [gradeID_Grade_ID] FOREIGN KEY ([gradeID]) REFERENCES [Grade] ([ID])
 );
 
+
+CREATE TABLE [Assignment] (
+	ID VARCHAR(6) PRIMARY KEY NOT NULL,
+	positionID VARCHAR(4) NOT NULL,
+	classID VARCHAR(6) NOT NULL,
+	CONSTRAINT [Assignment_positionID_Position_ID] FOREIGN KEY ([positionID]) REFERENCES [Position] ([ID]),
+	 CONSTRAINT [Assignment_classID_Class_ID] FOREIGN KEY ([classID]) REFERENCES [Class] ([ID])
+)
+
 -- Create table [User]
 CREATE TABLE [User] (
   [ID] varchar(6) NOT NULL,
-  [positionID] varchar(4) NOT NULL,
   [accessID] varchar(4) NOT NULL,
+  [assignmentID] VARCHAR (6),
   PRIMARY KEY ([ID]),
-  CONSTRAINT [positionID_ID] FOREIGN KEY ([positionID]) REFERENCES [Position] ([ID]),
-  CONSTRAINT [accessID_Access_ID] FOREIGN KEY ([accessID]) REFERENCES [Access] ([ID])
+  CONSTRAINT [accessID_Access_ID] FOREIGN KEY ([accessID]) REFERENCES [Access] ([ID]),
+  CONSTRAINT [User_assignmentID_Assignment_ID] FOREIGN KEY ([assignmentID]) REFERENCES [Assignment] ([ID])
 );
-
 
 
 
@@ -71,6 +79,11 @@ CREATE TABLE [ClassInformation] (
 );
 
 ALTER TABLE [Class] ADD CONSTRAINT [classteacherID_User_ID] FOREIGN KEY ([classteacherID]) REFERENCES [User] ([ID]);
+
+
+
+
+
 
 -- Create table UserInformation
 CREATE TABLE [UserInformation] (
@@ -159,7 +172,7 @@ CREATE TABLE Result_User_AcedamicYear(
 	Constraint result_capacityID foreign key (capacityID) references Capacity(capacityID),
 	Constraint result_resultID foreign key (resultID) references Result(resultID));
 
-alter table Semester add coafience int NOT NULL
+-- alter table Semester add coafience int NOT NULL
 ---CREATE TABLE Result_user_Subject
 CREATE TABLE Result_user_subject(
 	userID varchar(6) NOT NULL,
@@ -199,7 +212,60 @@ CREATE TABLE [Account] (
 
 
 
+-------------------- INSERT DATA --------------------
 
 
 
+GO
+INSERT INTO [Position]
+VALUES('GVBM', 'Giáo Viên Bộ Môn') ,
+      ('VTHU', 'Văn Thư') ,
+      ('HTRU', 'Hiệu Trưởng') ,
+      ('HPHO', 'Hiệu Phó') ,
+      ('THKY', 'Thư Ký') ,
+      ('HOCS', 'Học Sinh') ;
 
+GO
+
+
+INSERT INTO ACCESS (ID,
+                    createData,
+                    readData,
+                    updateData,
+                    deleteData)
+VALUES ('1110', 1, 1, 1, 0),
+       ('1011', 1, 0, 1, 1),
+       ('0100', 0, 1, 0, 0),
+       ('1101', 1, 1, 0, 1),
+       ('1111', 1, 1, 1, 1);
+
+GO
+
+
+INSERT INTO Grade
+VALUES('KHOI10', N'Khối lớp 10'),
+      ('KHOI11', N'Khối lớp 11'),
+      ('KHOI12', N'Khối lớp 12');
+
+GO
+
+
+INSERT INTO AcademicYear
+VALUES ('022023', N'Năm học 2022 - 2023'),
+       ('023024', N'Năm học 2024 - 2024'),
+       ('024025', N'Năm học 2024 - 2025');
+
+GO
+
+
+INSERT INTO TypeofPoint
+VALUES ('DIEMTX', N'Điểm đánh giá thường xuyên', 1),
+       ('DIEMGK', N'Điểm giữa kỳ', 2),
+       ('DIEMCK', N'Điểm cuối kỳ', 3),
+       ('DIEMTB', N'Điểm trung bình môn', 1);
+
+GO
+INSERT INTO Semester
+VALUES ('HOCKY1', N'Học kỳ 1'),
+       ('HOCKY2', N'Học kỳ 2'),
+       ('HOCKY3', N'Học kỳ 3');
