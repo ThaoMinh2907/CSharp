@@ -37,7 +37,6 @@ CREATE TABLE [Position] (
 CREATE TABLE [Class] (
   [ID] varchar(6) NOT NULL,
   [gradeID] varchar(6) NOT NULL,
-  [classteacherID] varchar(6) NOT NULL,
   [academicyearID] varchar(6) NOT NULL,
   [semesterID] varchar(6) NOT NULL,
   PRIMARY KEY ([ID]),
@@ -59,7 +58,11 @@ CREATE TABLE [Assignment] (
 CREATE TABLE [User] (
   [ID] varchar(6) NOT NULL,
   [accessID] varchar(4) NOT NULL,
+<<<<<<< HEAD
   [assignmentID] VARCHAR (6),
+=======
+  [assignmentID] varchar(6) NOT NULL,
+>>>>>>> abf5d0b1b9953902fa640032e9f633192bcfecd6
   PRIMARY KEY ([ID]),
   CONSTRAINT [accessID_Access_ID] FOREIGN KEY ([accessID]) REFERENCES [Access] ([ID]),
   CONSTRAINT [User_assignmentID_Assignment_ID] FOREIGN KEY ([assignmentID]) REFERENCES [Assignment] ([ID])
@@ -78,7 +81,6 @@ CREATE TABLE [ClassInformation] (
   CONSTRAINT [classID_Class_ID] FOREIGN KEY ([classID]) REFERENCES [Class] ([ID])
 );
 
-ALTER TABLE [Class] ADD CONSTRAINT [classteacherID_User_ID] FOREIGN KEY ([classteacherID]) REFERENCES [User] ([ID]);
 
 
 
@@ -138,7 +140,7 @@ Alter table point add constraint point_typePointID foreign key (typeOfPointID) r
 --CREATE TABLE CONDUCT
 CREATE TABLE Conduct( /*hạnh kiểm*/
 	conductID varchar(6) NOT NULL,
-	conductName varchar(50) NOT NULL,
+	conductName nvarchar(50) NOT NULL,
 	primary key (conductID));
 ---CREATE TABLE Capacity
 CREATE TABLE Capacity(/*học lực*/
@@ -196,10 +198,10 @@ CREATE TABLE Result_user_subject(
 
 -- Create table Account
 CREATE TABLE [Account] (
-  [ID] varchar(6) NOT NULL,
+  [username] varchar(100) NOT NULL,
   [userID] varchar(6) NOT NULL,
   [password] varchar(100) NOT NULL,
-  PRIMARY KEY ([ID]),
+  PRIMARY KEY ([username]),
   CONSTRAINT [acountID_ID] FOREIGN KEY ([userID]) REFERENCES [User] ([ID])
 );
 
