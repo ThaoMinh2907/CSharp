@@ -1,8 +1,8 @@
-﻿CREATE DATABASE dataStudentManager;
+CREATE DATABASE dataStudentManager;
 use dataStudentManager;
 CREATE TABLE [AcademicYear] (
   [ID] varchar(6) NOT NULL PRIMARY KEY,
-  [name] varchar(100) NOT NULL
+  [name] nvarchar(100) NOT NULL
 );
 
 -- Create table Access
@@ -17,19 +17,19 @@ CREATE TABLE [Access] (
 -- Create table Semester
 CREATE TABLE [Semester] (
   [ID] varchar(6) NOT NULL PRIMARY KEY,
-  [name] varchar(100) NOT NULL
+  [name] nvarchar(100) NOT NULL
 );
 
 -- Create table Grade
 CREATE TABLE [Grade] (
   [ID] varchar(6) NOT NULL PRIMARY KEY,
-  [name] varchar(100) NOT NULL
+  [name] nvarchar(100) NOT NULL
 );
 
 -- Create table Position
 CREATE TABLE [Position] (
   [ID] varchar(4) NOT NULL PRIMARY KEY,
-  [positionName] varchar(100) NOT NULL
+  [positionName] nvarchar(100) NOT NULL
 );
 
 
@@ -51,7 +51,6 @@ CREATE TABLE [User] (
   [ID] varchar(6) NOT NULL,
   [positionID] varchar(4) NOT NULL,
   [accessID] varchar(4) NOT NULL,
-  [classID] varchar(6) NOT NULL,
   PRIMARY KEY ([ID]),
   CONSTRAINT [positionID_ID] FOREIGN KEY ([positionID]) REFERENCES [Position] ([ID]),
   CONSTRAINT [accessID_Access_ID] FOREIGN KEY ([accessID]) REFERENCES [Access] ([ID])
@@ -64,22 +63,21 @@ CREATE TABLE [User] (
 CREATE TABLE [ClassInformation] (
   [ID] varchar(6) NOT NULL,
   [classID] varchar(6) NOT NULL,
-  [name] varchar(100) NOT NULL,
+  [name] nvarchar(100) NOT NULL,
   [maxSeat] int NOT NULL,
-  [studentPopulation] int NOT NULL,
+  [NumOfStudent] int NOT NULL,
   PRIMARY KEY ([ID], [classID]),
   CONSTRAINT [classID_Class_ID] FOREIGN KEY ([classID]) REFERENCES [Class] ([ID])
 );
 
 ALTER TABLE [Class] ADD CONSTRAINT [classteacherID_User_ID] FOREIGN KEY ([classteacherID]) REFERENCES [User] ([ID]);
 
-ALTER TABLE [User] ADD CONSTRAINT [User_classID_Class_ID] FOREIGN KEY ([classID]) REFERENCES [Class] ([ID]);
 -- Create table UserInformation
 CREATE TABLE [UserInformation] (
   [ID] varchar(6) NOT NULL,
   [userID] varchar(6) NOT NULL,
-  [name] varchar(100) NOT NULL,
-  birthday datetime NOT NULL,
+  [name] nvarchar(100) NOT NULL,
+  [birthday] datetime NOT NULL,
   [location] varchar(100) NOT NULL,
   [email] int NOT NULL,
   [numberphone] int NOT NULL,
@@ -91,7 +89,7 @@ CREATE TABLE [UserInformation] (
 ---Create table TypeofPoint
 CREATE TABLE TypeofPoint(
 	pointID varchar(6) NOT NULL,
-	pointName varchar(50) NOT NULL,
+	pointName nvarchar(50) NOT NULL,
 	coafience int NOT NULL,
 	PRIMARY KEY(pointID),
 	);
@@ -99,7 +97,7 @@ CREATE TABLE TypeofPoint(
 --create table Subject
 CREATE TABLE Subject(
 	subjectID varchar(6) NOT NULL,
-	subjectName varchar(50) NOT NULL,
+	subjectName nvarchar(50) NOT NULL,
 	lesson int NOT NULL,
 	coafience int NOT NULL,
 	primary key(subjectID),
@@ -132,7 +130,7 @@ CREATE TABLE Conduct( /*hạnh kiểm*/
 ---CREATE TABLE Capacity
 CREATE TABLE Capacity(/*học lực*/
 	capacityID varchar(6) NOT NULL,
-	capacityName varchar(50) NOT NULL,
+	capacityName nvarchar(50) NOT NULL,
 	lowerLimit float NOT NULL,/*điểm cận dưới*/
 	upperLimit float NOT NULL,/*điểm cận trên*/
 	paraPoint  float NOT NULL, /*điểm khống chế*/
@@ -140,7 +138,7 @@ CREATE TABLE Capacity(/*học lực*/
 ---CREATE TABLE Result
 CREATE TABLE Result(
 	resultID varchar(6) NOT NULL,
-	resultName varchar(50) NOT NULL,
+	resultName nvarchar(50) NOT NULL,
 	Primary key(resultID));
 ---CREATE TABLE Result_User_AcedamicYear
 CREATE TABLE Result_User_AcedamicYear(
