@@ -1,4 +1,5 @@
-﻿use dataStudentManager
+﻿CREATE DATABASE dataStudentManager;
+use dataStudentManager;
 CREATE TABLE [AcademicYear] (
   [ID] varchar(6) NOT NULL PRIMARY KEY,
   [name] varchar(100) NOT NULL
@@ -72,7 +73,7 @@ CREATE TABLE [ClassInformation] (
 
 ALTER TABLE [Class] ADD CONSTRAINT [classteacherID_User_ID] FOREIGN KEY ([classteacherID]) REFERENCES [User] ([ID]);
 
-ALTER TABLE [User] ADD CONSTRAINT [classID_Class_ID] FOREIGN KEY ([classID]) REFERENCES [Class] ([ID]);
+ALTER TABLE [User] ADD CONSTRAINT [User_classID_Class_ID] FOREIGN KEY ([classID]) REFERENCES [Class] ([ID]);
 -- Create table UserInformation
 CREATE TABLE [UserInformation] (
   [ID] varchar(6) NOT NULL,

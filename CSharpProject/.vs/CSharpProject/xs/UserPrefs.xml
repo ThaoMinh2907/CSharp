@@ -1,18 +1,23 @@
 ﻿<Properties StartupConfiguration="{DA7C1CCD-0AB8-49FC-B978-1612715EE286}|Default">
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.CSharpProject PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="CSharpProject" selected="True" />
+          <Node name="CSharpProject" expanded="True" selected="True">
+            <Node name="CSharpProject" expanded="True">
+              <Node name="Database" expanded="True" />
+              <Node name="GUI" expanded="True" />
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.CSharpProject PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>
