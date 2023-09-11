@@ -48,7 +48,7 @@ class Program
         //        excelConnector.WriteDataToExcel(headers, data);
 
         string sheet_name = "Lớp 10A2";
-        connectExcel.exportDataToExcel("../../../DAO/Excel/demo2.xlsx", sheet_name, ConnectGGSheet.ReadDataFromGoogleSheets(sheet_name));
+        connectExcel.exportDataToExcel("../../../DAO/Excel/demodemo.xlsx", sheet_name, ConnectGGSheet.ReadDataFromGoogleSheets(sheet_name));
     }
 }
 

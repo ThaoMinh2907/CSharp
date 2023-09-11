@@ -181,45 +181,7 @@ CREATE TABLE Result_user_subject(
 	Constraint result_pointSubject_semester foreign key(semesterID) references Semester (ID),
 	);
 	
-
-
-
-
-
-
-
-
-
-
-select * from point;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- Create table ClassInformation
---CREATE TABLE [ClassInformation] (
---  [ID] varchar(6) NOT NULL,
- -- [classID] varchar(6) NOT NULL,
-  --[name] varchar(100) NOT NULL,
-  --[maxSeat] int NOT NULL,
-  --[studentPopulation] int NOT NULL,
-  --PRIMARY KEY ([ID], [classID]),
-  --CONSTRAINT [classID_Class_ID] FOREIGN KEY ([classID]) REFERENCES [Class] ([ID])
---);
+-- select * from point;
 
 -- Create table Account
 CREATE TABLE [Account] (
