@@ -50,6 +50,7 @@ CREATE TABLE [Assignment] (
 	ID VARCHAR(6) PRIMARY KEY NOT NULL,
 	positionID VARCHAR(4) NOT NULL,
 	classID VARCHAR(6) NOT NULL,
+  assignmentName NVARCHAR(100),
 	CONSTRAINT [Assignment_positionID_Position_ID] FOREIGN KEY ([positionID]) REFERENCES [Position] ([ID]),
 	 CONSTRAINT [Assignment_classID_Class_ID] FOREIGN KEY ([classID]) REFERENCES [Class] ([ID])
 )
@@ -58,11 +59,7 @@ CREATE TABLE [Assignment] (
 CREATE TABLE [User] (
   [ID] varchar(6) NOT NULL,
   [accessID] varchar(4) NOT NULL,
-<<<<<<< HEAD
   [assignmentID] VARCHAR (6),
-=======
-  [assignmentID] varchar(6) NOT NULL,
->>>>>>> abf5d0b1b9953902fa640032e9f633192bcfecd6
   PRIMARY KEY ([ID]),
   CONSTRAINT [accessID_Access_ID] FOREIGN KEY ([accessID]) REFERENCES [Access] ([ID]),
   CONSTRAINT [User_assignmentID_Assignment_ID] FOREIGN KEY ([assignmentID]) REFERENCES [Assignment] ([ID])
@@ -72,7 +69,6 @@ CREATE TABLE [User] (
 
 -- Create table ClassInformation
 CREATE TABLE [ClassInformation] (
-  [ID] varchar(6) NOT NULL,
   [classID] varchar(6) NOT NULL,
   [name] nvarchar(100) NOT NULL,
   [maxSeat] int NOT NULL,
@@ -254,7 +250,7 @@ GO
 
 INSERT INTO AcademicYear
 VALUES ('022023', N'Năm học 2022 - 2023'),
-       ('023024', N'Năm học 2024 - 2024'),
+       ('023024', N'Năm học 2023 - 2024'),
        ('024025', N'Năm học 2024 - 2025');
 
 GO
@@ -271,3 +267,32 @@ INSERT INTO Semester
 VALUES ('HOCKY1', N'Học kỳ 1'),
        ('HOCKY2', N'Học kỳ 2'),
        ('HOCKY3', N'Học kỳ 3');
+
+GO
+INSERT INTO CLASS
+VALUES ('10A123', 'KHOI10', '023024', 'HOCKY1'),
+       ('10A223', 'KHOI10', '023024', 'HOCKY1'),
+       ('10A323', 'KHOI10', '023024', 'HOCKY1'),
+       ('11A123', 'KHOI11', '023024', 'HOCKY1'),
+       ('11A223', 'KHOI11', '023024', 'HOCKY1'),
+       ('11A323', 'KHOI11', '023024', 'HOCKY1'),
+       ('12A123', 'KHOI12', '023024', 'HOCKY1'),
+       ('12A223', 'KHOI12', '023024', 'HOCKY1'),
+       ('12A323', 'KHOI12', '023024', 'HOCKY1');
+
+GO
+INSERT INTO [Assignment]
+VALUES ('GVVL23', 'GVBM', '10A123', N'Giáo viên bộ môn vật lý'),
+       ('GVHH23', 'GVBM', '10A123', N'Giáo viên bộ môn hoá học'),
+       ('GVTH23', 'GVBM', '10A123', N'Giáo viên bộ môn toán học');
+
+GO 
+INSERT INTO ClassInformation VALUES ('10A123', N'Lớp 10A1', 40, 35),
+('10A223', N'Lớp 10A2', 40, 38),
+('10A323', N'Lớp 10A3', 40, 40),
+('11A123', N'Lớp 11A1', 40, 35),
+('11A223', N'Lớp 11A2', 40, 36),
+('11A323', N'Lớp 11A3', 40, 33),
+('12A123', N'Lớp 12A1', 40, 40),
+('12A223', N'Lớp 12A2', 40, 31),
+('12A323', N'Lớp 12A3', 40, 32);
