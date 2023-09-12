@@ -18,6 +18,7 @@ CREATE TABLE Point(
 	PRIMARY KEY (studentID, classID, typeofpointID, 
 		subjectID, academicyearID, semesterID, gradeID)
 )
+
 -- Tạo bảng học kì
 CREATE TABLE Semester (
 	ID VARCHAR(6) NOT NULL,
@@ -25,6 +26,7 @@ CREATE TABLE Semester (
 	coefficient INT, -- Hệ số của học kì	
 	PRIMARY KEY (ID)
 )
+
 -- Thêm các khoá chính và khoá ngoại
 ALTER TABLE Point 
 	ADD CONSTRAINT Point_semesterID_Semester_ID 
@@ -108,8 +110,7 @@ ALTER TABLE Assignment
 -- Tạo bảng học sinh
 CREATE TABLE Student(
 	ID VARCHAR(8) NOT NULL,
-	classID VARCHAR (8) NOT NULL,
-	gradeID VARCHAR (6) NOT NULL,
+	semesterID VARCHAR(8) NOT NULL,
 	studentName NVARCHAR(100),
 	studentBirthday DATETIME,	
 	studentPhone VARCHAR (11),
@@ -119,7 +120,7 @@ CREATE TABLE Student(
 	birthplace NVARCHAR(100),
 	currentResidence NVARCHAR(100),
 	image VARCHAR(100),
-	PRIMARY KEY (ID, classID, gradeID)
+	PRIMARY KEY (ID)
 )
 
 -- Tạo bảng giáo viên
@@ -162,17 +163,14 @@ CREATE TABLE Class(
 	quantityFemale INT,
 	PRIMARY KEY (ID, gradeID)
 )
--- Thêm các khoá chính và khoá ngoại
-ALTER TABLE Student  
-	ADD CONSTRAINT Student_classID_Class_ID
-	FOREIGN KEY (classID, gradeID) REFERENCES class(ID, gradeID)
+
 --ALTER TABLE Student 
 --	ADD CONSTRAINT PK_Student_classID_Class_ID
 --	PRIMARY KEY (classID)
 	-- Thêm các khoá chính và khoá ngoại
 ALTER TABLE Point 
-	ADD CONSTRAINT Point_studentID_classID_gradeID_Student_ID_classID_gradeID
-	FOREIGN KEY (studentID, classID, gradeID) REFERENCES Student(ID, classID, gradeID)
+	ADD CONSTRAINT Point_studentID_Student_ID
+	FOREIGN KEY (studentID) REFERENCES Student(ID)
 	
 ALTER TABLE [Assignment]  
 	ADD CONSTRAINT Assignment_classID_gradeID_Class_ID_gradeID
@@ -188,9 +186,7 @@ CREATE TABLE Grade(
 ALTER TABLE Point 
 	ADD CONSTRAINT Point_gradeID_Grade_ID
 	FOREIGN KEY (gradeID) REFERENCES Grade(ID)
-ALTER TABLE Student  
-	ADD CONSTRAINT Student_gradeID_Grade_ID
-	FOREIGN KEY (gradeID) REFERENCES Grade(ID)
+
 ALTER TABLE Class 
 	ADD CONSTRAINT Class_gradeID_Grade_ID
 	FOREIGN KEY (gradeID) REFERENCES Grade(ID)
@@ -238,8 +234,8 @@ CREATE TABLE Summary(
 	
 	-- Thêm các khoá chính và khoá ngoại
 ALTER TABLE Summary  
-	ADD CONSTRAINT Summary_studentID_classID_gradeID_Student_ID_classID_gradeID
-	FOREIGN KEY (studentID, classID, gradeID) REFERENCES Student(ID, classID, gradeID)
+	ADD CONSTRAINT Summary_studentID_Student_ID
+	FOREIGN KEY (studentID) REFERENCES Student(ID)
 ALTER TABLE Summary 
 	ADD CONSTRAINT Summary_subjectID_Subject_ID
 	FOREIGN KEY (subjectID) REFERENCES Subject(ID)
@@ -272,9 +268,9 @@ CREATE TABLE StudentConduct(
 )
 
 ALTER TABLE StudentConduct
-	ADD CONSTRAINT StudentConduct_studentID_classID_gradeID_Student_ID_classID_gradeID
-	FOREIGN KEY (studentID, classID, gradeID)
-	REFERENCES Student(ID, classID, gradeID) 
+	ADD CONSTRAINT StudentConduct_studentID_Student_ID
+	FOREIGN KEY (studentID)
+	REFERENCES Student(ID) 
 ALTER TABLE StudentConduct
 	ADD CONSTRAINT StudentConduct_gradeID_Grade_ID
 	FOREIGN KEY (gradeID) REFERENCES Grade(ID)
@@ -310,9 +306,9 @@ CREATE TABLE StudentCapacity(
 )	
 	
 ALTER TABLE StudentCapacity
-	ADD CONSTRAINT StudentCapacity_studentID_classID_gradeID_Student_ID_classID_gradeID
-	FOREIGN KEY (studentID, classID, gradeID)
-	REFERENCES Student(ID, classID, gradeID) 
+	ADD CONSTRAINT StudentCapacity_studentID_Student_ID
+	FOREIGN KEY (studentID)
+	REFERENCES Student(ID) 
 
 
 
@@ -337,6 +333,31 @@ ALTER TABLE Summary
 	FOREIGN KEY (studentcapacityID, studentID, classID, academicyearID, semesterID, gradeID)
 	REFERENCES StudentCapacity(studentcapacityID, studentID, classID, academicyearID, semesterID, gradeID)
 
+CREATE TABLE StudentClassSemesterAcademicYear(
+	studentID VARCHAR(8) NOT NULL,
+	classID VARCHAR(8) NOT NULL,
+	semesterID VARCHAR(6) NOT NULL,
+	academicyearID VARCHAR(8) NOT NULL,
+	gradeID VARCHAR(6) NOT NULL,
+	PRIMARY KEY (studentID, classID, semesterID, academicyearID, gradeID)
+)
+
+ALTER TABLE StudentClassSemesterAcademicYear
+	ADD CONSTRAINT StudentClassSemesterAcademicYear_studentID_Student_ID
+	FOREIGN KEY (studentID) REFERENCES Student(ID)
+
+ALTER TABLE StudentClassSemesterAcademicYear
+	ADD CONSTRAINT StudentClassSemesterAcademicYear_classID_gradeID_Class_ID_gradeID
+	FOREIGN KEY (classID, gradeID) REFERENCES Class(ID, gradeID)
+	
+ALTER TABLE StudentClassSemesterAcademicYear
+	ADD CONSTRAINT StudentClassSemesterAcademicYear_semesterID_Semester_ID
+	FOREIGN KEY (semesterID) REFERENCES Semester(ID)
+
+ALTER TABLE StudentClassSemesterAcademicYear
+	ADD CONSTRAINT StudentClassSemesterAcademicYear_academicyearID_AcademicYear_ID
+	FOREIGN KEY (academicyearID) REFERENCES AcademicYear(ID)
+	
 INSERT INTO Grade
 VALUES('KHOI10', N'Khối lớp 10', 5, 3),
       ('KHOI11', N'Khối lớp 11', 5, 3),
