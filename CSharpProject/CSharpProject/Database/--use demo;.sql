@@ -11,7 +11,7 @@ CREATE TABLE Point(
 	classID VARCHAR(8) NOT NULL,
 	gradeID VARCHAR(6) NOT NULL,
 	typeofpointID VARCHAR(8) NOT NULL,
-	subjectID VARCHAR(8), -- Giá trị này NULL nếu loại điểm là điểm hạnh kiểm
+	subjectID VARCHAR(8), -- giá trị này null nếu điểm là điểm hạnh kiểm
 	academicyearID VARCHAR(8) NOT NULL,
 	semesterID VARCHAR(6) NOT NULL,
 	point INT,
