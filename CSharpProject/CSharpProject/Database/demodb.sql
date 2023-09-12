@@ -65,7 +65,7 @@ ALTER TABLE Point
 CREATE TABLE TypeOfSubject(
 	ID VARCHAR(8) NOT NULL,
 	subjectName VARCHAR(100),
-	totalTest INT,
+	totalTest INT, -- Tổng bài test thường xuyên của môn học
 	PRIMARY KEY (ID)
 )
 -- Thêm các khoá chính và khoá ngoại
@@ -104,6 +104,7 @@ ALTER TABLE Assignment
 ALTER TABLE Assignment 
 	ADD CONSTRAINT Assignment_positionID_Position_ID
 	FOREIGN KEY (positionID) REFERENCES Position(ID)
+
 -- Tạo bảng học sinh
 CREATE TABLE Student(
 	ID VARCHAR(8) NOT NULL,
@@ -257,7 +258,18 @@ ALTER TABLE Summary
 	
 	
 	
-	
+CREATE TABLE StudentConduct(
+	studentconductID VARCHAR(8) NOT NULL,
+	studentID VARCHAR(8) NOT NULL,
+	classID VARCHAR(8) NOT NULL,
+	academicyearID VARCHAR(8) NOT NULL,
+	semesterID VARCHAR(6) NOT NULL,
+	gradeID VARCHAR(6) NOT NULL,
+	point INT,
+	PRIMARY KEY (studentID, classID, 
+		academicyearID, semesterID, gradeID) 
+
+)
 	
 	
 
