@@ -219,22 +219,22 @@ CREATE TABLE Capacity(
 CREATE TABLE Summary(
 	studentID VARCHAR(8) NOT NULL,
 	classID VARCHAR(8) NOT NULL,
-	conductID VARCHAR(8) NOT NULL,
-	capacityID VARCHAR(8) NOT NULL,
+	studentconductID VARCHAR(8) NOT NULL,
+	studentcapacityID VARCHAR(8) NOT NULL,
 	academicyearID VARCHAR(8) NOT NULL,
 	semesterID VARCHAR(6) NOT NULL,
 	gradeID VARCHAR(6) NOT NULL,
 	subjectID VARCHAR(8) NOT NULL,
 	point INT,
-	PRIMARY KEY (studentID, classID, conductID, capacityID, 
+	PRIMARY KEY (studentID, classID, studentconductID, studentcapacityID, 
 		academicyearID, semesterID, gradeID, subjectID) 
 )
-ALTER TABLE Summary 
-	ADD CONSTRAINT Summary_capacityID_Capacity_ID
-	FOREIGN KEY (capacityID) REFERENCES Capacity(ID)
-ALTER TABLE Summary 
-	ADD CONSTRAINT Summary_conductID_Capacity_ID
-	FOREIGN KEY (conductID) REFERENCES Conduct(ID)
+-- ALTER TABLE Summary 
+-- 	ADD CONSTRAINT Summary_capacityID_Capacity_ID
+-- 	FOREIGN KEY (capacityID) REFERENCES Capacity(ID)
+-- ALTER TABLE Summary 
+-- 	ADD CONSTRAINT Summary_conductID_Capacity_ID
+-- 	FOREIGN KEY (conductID) REFERENCES Conduct(ID)
 	
 	-- Thêm các khoá chính và khoá ngoại
 ALTER TABLE Summary  
@@ -265,13 +265,77 @@ CREATE TABLE StudentConduct(
 	academicyearID VARCHAR(8) NOT NULL,
 	semesterID VARCHAR(6) NOT NULL,
 	gradeID VARCHAR(6) NOT NULL,
+	conductName NVARCHAR(100),
 	point INT,
-	PRIMARY KEY (studentID, classID, 
+	PRIMARY KEY (studentconductID, studentID, classID, 
 		academicyearID, semesterID, gradeID) 
-
 )
+
+ALTER TABLE StudentConduct
+	ADD CONSTRAINT StudentConduct_studentID_classID_gradeID_Student_ID_classID_gradeID
+	FOREIGN KEY (studentID, classID, gradeID)
+	REFERENCES Student(ID, classID, gradeID) 
+ALTER TABLE StudentConduct
+	ADD CONSTRAINT StudentConduct_gradeID_Grade_ID
+	FOREIGN KEY (gradeID) REFERENCES Grade(ID)
+ALTER TABLE StudentConduct
+	ADD CONSTRAINT StudentConduct_classID_gradeID_Class_ID_Grade
+	FOREIGN KEY (classID, gradeID) REFERENCES Class(ID, gradeID)
+
+ALTER TABLE StudentConduct
+	ADD CONSTRAINT StudentConduct_academicyearID_AcademicYear_ID
+	FOREIGN KEY (academicyearID) REFERENCES AcademicYear(ID)
+
+
+ALTER TABLE StudentConduct
+	ADD CONSTRAINT StudentConduct_semesterID_Semester_ID
+	FOREIGN KEY (semesterID) REFERENCES Semester(ID)
+
+ALTER TABLE Summary
+	ADD CONSTRAINT Summary_studentconductID_classID_studentID_academicyearID_semesterID_StudentConduct_ID
+	FOREIGN KEY (studentconductID, studentID, classID, academicyearID, semesterID, gradeID)
+	REFERENCES StudentConduct(studentconductID, studentID, classID, academicyearID, semesterID, gradeID)
+
+
+CREATE TABLE StudentCapacity(
+	studentcapacityID VARCHAR(8) NOT NULL,
+	studentID VARCHAR(8) NOT NULL,
+	classID VARCHAR(8) NOT NULL,
+	academicyearID VARCHAR(8) NOT NULL,
+	semesterID VARCHAR(6) NOT NULL,
+	gradeID VARCHAR(6) NOT NULL,
+	capacityName NVARCHAR(100),
+	PRIMARY KEY (studentcapacityID, studentID, classID, 
+		academicyearID, semesterID, gradeID) 
+)	
 	
-	
+ALTER TABLE StudentCapacity
+	ADD CONSTRAINT StudentCapacity_studentID_classID_gradeID_Student_ID_classID_gradeID
+	FOREIGN KEY (studentID, classID, gradeID)
+	REFERENCES Student(ID, classID, gradeID) 
+
+
+
+ALTER TABLE StudentCapacity
+	ADD CONSTRAINT studentcapacity_gradeID_Grade_ID
+	FOREIGN KEY (gradeID) REFERENCES Grade(ID)
+ALTER TABLE StudentCapacity
+	ADD CONSTRAINT studentcapacity_classID_gradeID_Class_ID_Grade
+	FOREIGN KEY (classID, gradeID) REFERENCES Class(ID, gradeID)
+
+ALTER TABLE StudentCapacity
+	ADD CONSTRAINT studentcapacity_academicyearID_AcademicYear_ID
+	FOREIGN KEY (academicyearID) REFERENCES AcademicYear(ID)
+
+
+ALTER TABLE StudentCapacity
+	ADD CONSTRAINT studentcapacity_semesterID_Semester_ID
+	FOREIGN KEY (semesterID) REFERENCES Semester(ID)
+
+ALTER TABLE Summary
+	ADD CONSTRAINT Summary_studentcapacityID_classID_studentID_academicyearID_semesterID_studentcapacity_ID
+	FOREIGN KEY (studentcapacityID, studentID, classID, academicyearID, semesterID, gradeID)
+	REFERENCES StudentCapacity(studentcapacityID, studentID, classID, academicyearID, semesterID, gradeID)
 
 INSERT INTO Grade
 VALUES('KHOI10', N'Khối lớp 10', 5, 3),
@@ -307,3 +371,9 @@ VALUES('GVBMON', N'Giáo Viên Bộ Môn') ,
       ('HIEUPHO', N'Hiệu Phó') ,
       ('THUKY', N'Thư Ký') ,
       ('HOCSINH', N'Học Sinh') 
+
+
+
+
+
+	  
