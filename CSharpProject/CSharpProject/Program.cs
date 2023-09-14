@@ -22,18 +22,18 @@ class Program
                     new List<object> { "Dữ liệu 1", "Dữ liệu 2", "Dữ liệu 3" },
                     new List<object> { "Dữ liệu 4", "Dữ liệu 5", "Dữ liệu 6" }
                 };
-        //ConnectGGSheet.WriteDataToGoogleSheets("demodata", valuesToWrite);
+        //ConnectGGSheet.WriteDataToGoogleSheets("AcademicYear", valuesToWrite);
 
-        //var values = ConnectGGSheet.ReadDataFromGoogleSheets("lớp 10");
+        var values = ConnectGGSheet.ReadDataFromGoogleSheets("AcademicYear");
         //Console.WriteLine(values.Count);
-        //foreach (var row in values)
-        //{
-        //    foreach (var col in row)
-        //    {
-        //        Console.Write($"{col} ");
-        //    }
-        //    Console.WriteLine();
-        //}
+        foreach (var row in values)
+        {
+            foreach (var col in row)
+            {
+                Console.Write($"{col} ");
+            }
+            Console.WriteLine();
+        }
 
         //        string filePath = "./CSharpProject/DAO/Excel/Demo.xlsx";
         //        ExcelConnector excelConnector = new ExcelConnector(filePath);
@@ -47,8 +47,9 @@ class Program
 
         //        excelConnector.WriteDataToExcel(headers, data);
 
-        string sheet_name = "Lớp 10A2";
-        connectExcel.exportDataToExcel("../../../DAO/Excel/demodemo.xlsx", sheet_name, ConnectGGSheet.ReadDataFromGoogleSheets(sheet_name));
+        //string sheet_name = "Lớp 10A2";
+        //connectExcel.exportDataToExcel("../../../DAO/Excel/demodemo.xlsx", sheet_name, ConnectGGSheet.ReadDataFromGoogleSheets(sheet_name));
+        initConnect.writeDataToTableAcademicYear(values);
     }
 }
 

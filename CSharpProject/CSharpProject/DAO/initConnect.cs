@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 
-public class Connect
+public class initConnect
 {
     // "Data Source=<tên_máy_chủ>;Initial Catalog=<tên_cơ_sở_dữ_liệu>;User ID=<tên_người_dùng>;Password=<mật_khẩu>;"
     static string connectionString = "Data Source=localhost;Initial Catalog=demo;User ID=sa;Password=reallyStrongPwd123;";
@@ -31,5 +31,16 @@ public class Connect
             Console.WriteLine("Đóng kết nối thành công!");
         }
     }
+    public static void writeDataToTableAcademicYear(IList<IList<object>> value)
+    {
+        ConnectToDatabase();
+        string sql = "SELECT * FROM dbo.AcademicYear";
+        SqlCommand command = new SqlCommand(sql, ConnectToDatabase());
+        SqlDataReader dataReader = command.ExecuteReader();
+        while (dataReader.Read())
+        {
+            Console.WriteLine(dataReader.GetSqlString(dataReader.GetOrdinal("ID")));
+        }
 
+    }
 }
