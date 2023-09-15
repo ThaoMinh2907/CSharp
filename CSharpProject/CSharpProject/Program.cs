@@ -49,7 +49,7 @@ class Program
 
         //string sheet_name = "Lớp 10A2";
         //connectExcel.exportDataToExcel("../../../DAO/Excel/demodemo.xlsx", sheet_name, ConnectGGSheet.ReadDataFromGoogleSheets(sheet_name));
-        initConnect.writeDataToTableAcademicYear(values);
+        //initConnect.writeDataToTableAcademicYear(values);
     }
 }
 
