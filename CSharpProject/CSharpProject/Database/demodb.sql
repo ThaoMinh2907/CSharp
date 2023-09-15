@@ -118,7 +118,7 @@ CREATE TABLE Student(
 	studentparentName NVARCHAR (100),
 	studentparentBirthday DATETIME,
 	birthplace NVARCHAR(100),
-	currentResidence NVARCHAR(100),
+	[address] NVARCHAR(100),
 	image VARCHAR(100),
 	PRIMARY KEY (ID)
 )
@@ -358,43 +358,20 @@ ALTER TABLE StudentClassSemesterAcademicYear
 	ADD CONSTRAINT StudentClassSemesterAcademicYear_academicyearID_AcademicYear_ID
 	FOREIGN KEY (academicyearID) REFERENCES AcademicYear(ID)
 	
-INSERT INTO Grade
-VALUES('KHOI10', N'Khối lớp 10', 5, 3),
-      ('KHOI11', N'Khối lớp 11', 5, 3),
-      ('KHOI12', N'Khối lớp 12', 5, 3)
 
-
-
-
-INSERT INTO AcademicYear
-VALUES ('20222023', N'Năm học 2022 - 2023'),
-       ('20232024', N'Năm học 2023 - 2024'),
-       ('20242025', N'Năm học 2024 - 2025')
-
-
-
-
-INSERT INTO TypeofPoint
-VALUES ('DIEMDGTX', N'Điểm đánh giá thường xuyên', 1),
-       ('DIEMDGGK', N'Điểm giữa kỳ', 2),
-       ('DIEMDGCK', N'Điểm cuối kỳ', 3),
-       ('DIEMDGTB', N'Điểm trung bình môn', 1)
-
-
-INSERT INTO Semester
-VALUES ('HOCKY1', N'Học kỳ 1', 1),
-       ('HOCKY2', N'Học kỳ 2', 2)
-       
-INSERT INTO [Position]
-VALUES('GVBMON', N'Giáo Viên Bộ Môn') ,
-      ('VANTHU', N'Văn Thư') ,
-      ('HTRUONG', N'Hiệu Trưởng') ,
-      ('HIEUPHO', N'Hiệu Phó') ,
-      ('THUKY', N'Thư Ký') ,
-      ('HOCSINH', N'Học Sinh') 
-
-
-
+CREATE TABLE SubjectOfTeacher(
+	teacherID VARCHAR(8) NOT NULL,
+	subjectID VARCHAR(8) NOT NULL,
+	PRIMARY KEY (teacherID, subjectID)
+)
+ALTER TABLE SubjectOfTeacher 
+	ADD CONSTRAINT SubjectOfTeacher_teacherID_Teacher_ID 
+	FOREIGN KEY (teacherID) 
+	REFERENCES Teacher(ID)
+ALTER TABLE SubjectOfTeacher 
+	ADD CONSTRAINT SubjectOfTeachersubjectID_Subject_ID 
+	FOREIGN KEY (subjectID) 
+	REFERENCES Subject(ID)
 
 
 	  
