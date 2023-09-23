@@ -239,7 +239,7 @@ CREATE TABLE Grade(
 	ID VARCHAR(6) NOT NULL,
 	gradeName NVARCHAR(100),
 	maxclassofGrade INT,
-	quatityclassofGrade INT
+	quantityclassofGrade INT
 	PRIMARY KEY (ID)	
 )
 ALTER TABLE Point 
@@ -472,6 +472,20 @@ ALTER TABLE [Assignment]
 	  
 	
 	
-	
-	
-	
+CREATE TRIGGER check_Grade
+--ALTER TRIGGER check_Grade
+ON Grade
+INSTEAD OF INSERT
+AS
+BEGIN
+    IF EXISTS (SELECT * FROM inserted WHERE maxclassofGrade < 0 OR quantityclassofGrade < 0)
+    BEGIN
+        RAISERROR ('Quantity cannot be negative', 16, 1);
+        ROLLBACK TRANSACTION;
+    END
+    ELSE
+    BEGIN
+        INSERT INTO Grade (ID, gradeName, maxclassofGrade, quantityclassofGrade)
+        SELECT * FROM inserted;
+    END
+END;
