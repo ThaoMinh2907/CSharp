@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+
         /*  Student student = new()
           {
               Name = "T"
@@ -36,7 +37,7 @@ class Program
         {
             Student student = new()
             {
-                Id = (string)values[row][0],
+                ID = (string)values[row][0],
                 Name = (string)values[row][1],
                 Birthday = DateTime.ParseExact((string)values[row][2], format, CultureInfo.InvariantCulture),
                 Phone = (string)values[row][3],
@@ -44,9 +45,12 @@ class Program
                
                 
             };
-            Console.WriteLine(student.Id + "\t\t" + "\t\t" + student.Name + "\t\t" + student.Birthday+"\t\t"+student.Phone+"\t\t"+student.Email);
+            Console.WriteLine(student.ID + "\t\t" + "\t\t" + student.Name + "\t\t" + student.Birthday+"\t\t"+student.Phone+"\t\t"+student.Email);
             students.Add(student);
         }
+
+
+        
        /* foreach (var row in values)
         {
             Student student = new()

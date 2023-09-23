@@ -9,13 +9,13 @@ namespace CSharpProject.DTO
 {
     public abstract class People
     {
-        public String Id
+        public required string ID
         {
             get;
             set;
         }
 
-        public string Name
+        public required string Name
         {
             get;
             set;
@@ -46,7 +46,7 @@ namespace CSharpProject.DTO
             get;
             set;
         }
-        public string Phone
+        public required string Phone
         {
             get;
             set;
@@ -58,7 +58,7 @@ namespace CSharpProject.DTO
         }
         public People(string id, string name, string gender, string address, DateTime birthday, string birthplace, string email, string phone, string image)
         {
-            Id = id;
+            ID = id;
             Name = name;
             Gender = gender;
             Address = address;
