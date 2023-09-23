@@ -199,7 +199,7 @@ CREATE TABLE Account(
 	updateDate DATETIME,
 	finishDate DATETIME,
 	statusID VARCHAR(8),
-	PRIMARY KEY (username, statusID)
+	PRIMARY KEY (username, statusID, teacherID)
 )
 
 -- Thêm các khoá chính và khoá ngoại
@@ -281,7 +281,7 @@ CREATE TABLE Summary(
 	academicyearID VARCHAR(8) NOT NULL,
 	semesterID VARCHAR(6) NOT NULL,
 	gradeID VARCHAR(6) NOT NULL,
-	point INT,
+	
 	createDate DATETIME,
 	updateDate DATETIME,
 	finishDate DATETIME,
@@ -365,6 +365,7 @@ CREATE TABLE StudentCapacity(
 	semesterID VARCHAR(6) NOT NULL,
 	gradeID VARCHAR(6) NOT NULL,
 	capacityName NVARCHAR(100),
+	point INT,
 	createDate DATETIME,
 	updateDate DATETIME,
 	finishDate DATETIME,
