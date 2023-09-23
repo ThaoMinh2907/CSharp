@@ -123,12 +123,10 @@ ALTER TABLE Assignment
 CREATE TABLE Student(
 	ID VARCHAR(8) NOT NULL,
 	gender NVARCHAR(50),
-	studentName NVARCHAR(100),
-	studentBirthday DATETIME,	
-	studentPhone VARCHAR (11),
-	studentEmail VARCHAR (100),
-	studentparentName NVARCHAR (100),
-	studentparentBirthday DATETIME,
+	name NVARCHAR(100),
+	birthday DATETIME,	
+	numberPhone VARCHAR (11),
+	email VARCHAR (100),
 	birthplace NVARCHAR(100),
 	[address] NVARCHAR(100),
 	image VARCHAR(100),
@@ -138,6 +136,23 @@ CREATE TABLE Student(
 	PRIMARY KEY (ID)
 )
 
+-- Tạo bảng cha mẹ học sinh
+CREATE TABLE Parent(
+	studentID VARCHAR(8) NOT NULL,
+	name NVARCHAR(100),
+	birthday DATETIME,
+	gender NVARCHAR(50),
+	numberPhone VARCHAR(11),
+	address NVARCHAR(100),
+	image VARCHAR(100),
+	createDate DATETIME,
+	updateDate DATETIME,
+	finishDate DATETIME,
+	PRIMARY KEY (studentID)
+)
+ALTER TABLE Parent 
+	ADD CONSTRAINT Parent_studentID_Student_ID 
+	FOREIGN KEY (studentID) REFERENCES Student(ID)
 -- Tạo bảng giáo viên
 CREATE TABLE Teacher(
 	ID VARCHAR(8) NOT NULL,
@@ -147,7 +162,7 @@ CREATE TABLE Teacher(
 	birthplace NVARCHAR(8),
 	email VARCHAR(100),
 	phonenumber VARCHAR(11),
-	currentResidence NVARCHAR(100),
+	address NVARCHAR(100),
 	image VARCHAR(100),
 	createDate DATETIME,
 	updateDate DATETIME,
