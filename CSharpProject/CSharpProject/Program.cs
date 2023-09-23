@@ -1,12 +1,17 @@
-﻿using System.Data.SqlClient;
+﻿
 using CSharpProject.DAO;
-using Newtonsoft.Json.Linq;
+using CSharpProject.DTO;
+using System.Globalization;
 
 class Program
 {
     static void Main()
     {
-
+        /*  Student student = new()
+          {
+              Name = "T"
+          };
+          Console.WriteLine(student.Name);*/
 
 
 
@@ -17,23 +22,49 @@ class Program
         //Connect.CloseConnection(connection);
 
         //Dữ liệu bạn muốn ghi vào Google Sheets
-        var valuesToWrite = new List<IList<object>>
-                {
-                    new List<object> { "Dữ liệu 1", "Dữ liệu 2", "Dữ liệu 3" },
-                    new List<object> { "Dữ liệu 4", "Dữ liệu 5", "Dữ liệu 6" }
-                };
+        /* var valuesToWrite = new List<IList<object>>
+                 {
+                     new List<object> { "Dữ liệu 1", "Dữ liệu 2", "Dữ liệu 3" },
+                     new List<object> { "Dữ liệu 4", "Dữ liệu 5", "Dữ liệu 6" }
+                 };*/
         //ConnectGGSheet.WriteDataToGoogleSheets("AcademicYear", valuesToWrite);
-
-        var values = ConnectGGSheet.ReadDataFromGoogleSheets("AcademicYear");
+        string format = "dd/MM/yyyy HH:mm:ss";
+        var values = ConnectGGSheet.ReadDataFromGoogleSheets("Student");
         //Console.WriteLine(values.Count);
-        foreach (var row in values)
+        List<Student> students = new List<Student>();
+        for (int row = 1; row < values.Count(); row++)
         {
-            foreach (var col in row)
+            Student student = new()
             {
-                Console.Write($"{col} ");
-            }
-            Console.WriteLine();
+                Id = (string)values[row][0],
+                Name = (string)values[row][1],
+                Birthday = DateTime.ParseExact((string)values[row][2], format, CultureInfo.InvariantCulture),
+                Phone = (string)values[row][3],
+                Email = (string)values[row][4],
+               
+                
+            };
+            Console.WriteLine(student.Id + "\t\t" + "\t\t" + student.Name + "\t\t" + student.Birthday+"\t\t"+student.Phone+"\t\t"+student.Email);
+            students.Add(student);
         }
+       /* foreach (var row in values)
+        {
+            Student student = new()
+            {
+                Id = (string)row[0],
+                Name = (string)row[1],
+                Birthday = DateTime.ParseExact((string)row[2], "dd/MM/yyyy", CultureInfo.InvariantCulture)
+
+            };
+            Console.WriteLine(student.Id+"\t\t"+"\t\t"+student.Name+"\t\t"+student.Birthday);
+            students.Add(student);
+            *//*foreach (var col in row)
+            {
+                *//*Console.Write($"{col} ");*//*
+                
+            }*/
+            /*Console.WriteLine();*//*
+        }*/
 
         //        string filePath = "./CSharpProject/DAO/Excel/Demo.xlsx";
         //        ExcelConnector excelConnector = new ExcelConnector(filePath);
@@ -97,3 +128,10 @@ class Program
 //            Console.WriteLine("Dữ liệu đã được xuất ra tệp Excel.");
 //        }
 //    }
+
+
+
+
+
+
+

@@ -1,8 +1,8 @@
---use demo;
+--use master;
 --DROP database StudentManager;
-CREATE DATABASE StudentManager;
+--CREATE DATABASE StudentManager;
 
-USE StudentManager;
+--USE StudentManager;
 -- 1
 
 -- Tạo bảng điểm
@@ -89,9 +89,10 @@ CREATE TABLE Assignment(
 	semesterID VARCHAR(6),
 	positionID VARCHAR (8),
 	academicyearID VARCHAR (8),
-	subjectID VARCHAR (8)
+	subjectID VARCHAR (8),
+	statusID VARCHAR(8),
 	PRIMARY KEY (teacherID, classID, semesterID, 
-	positionID, academicyearID, subjectID, gradeID)
+	positionID, academicyearID, subjectID, gradeID, statusID)
 )
 -- Thêm các khoá chính và khoá ngoại
 ALTER TABLE Assignment 
@@ -110,7 +111,7 @@ ALTER TABLE Assignment
 -- Tạo bảng học sinh
 CREATE TABLE Student(
 	ID VARCHAR(8) NOT NULL,
-	semesterID VARCHAR(8) NOT NULL,
+	gender NVARCHAR(50),
 	studentName NVARCHAR(100),
 	studentBirthday DATETIME,	
 	studentPhone VARCHAR (11),
@@ -127,6 +128,7 @@ CREATE TABLE Student(
 CREATE TABLE Teacher(
 	ID VARCHAR(8) NOT NULL,
 	teacherName NVARCHAR(100),
+	gender NVARCHAR(50),
 	birthday DATETIME,
 	birthplace NVARCHAR(8),
 	email VARCHAR(100),
@@ -333,14 +335,25 @@ ALTER TABLE Summary
 	FOREIGN KEY (studentcapacityID, studentID, classID, academicyearID, semesterID, gradeID)
 	REFERENCES StudentCapacity(studentcapacityID, studentID, classID, academicyearID, semesterID, gradeID)
 
+	
+CREATE TABLE Status (
+	ID VARCHAR(8),
+	statusName NVARCHAR(100),
+	PRIMARY KEY (ID)
+)	
 CREATE TABLE StudentClassSemesterAcademicYear(
 	studentID VARCHAR(8) NOT NULL,
 	classID VARCHAR(8) NOT NULL,
 	semesterID VARCHAR(6) NOT NULL,
 	academicyearID VARCHAR(8) NOT NULL,
 	gradeID VARCHAR(6) NOT NULL,
-	PRIMARY KEY (studentID, classID, semesterID, academicyearID, gradeID)
+	statusID VARCHAR(8) NOT NULL,
+	PRIMARY KEY (studentID, classID, semesterID, academicyearID, gradeID, statusID)
 )
+
+ALTER TABLE StudentClassSemesterAcademicYear
+	ADD CONSTRAINT StudentClassSemesterAcademicYear_statusID_Status_ID
+	FOREIGN KEY (statusID) REFERENCES Status(ID)
 
 ALTER TABLE StudentClassSemesterAcademicYear
 	ADD CONSTRAINT StudentClassSemesterAcademicYear_studentID_Student_ID
@@ -373,5 +386,13 @@ ALTER TABLE SubjectOfTeacher
 	FOREIGN KEY (subjectID) 
 	REFERENCES Subject(ID)
 
-
+ALTER TABLE [Assignment] 
+	ADD CONSTRAINT Assignment_statusID_Status_ID
+	FOREIGN KEY (statusID) REFERENCES Status(ID)
 	  
+	
+	
+	
+	
+	
+--SELECT * FROM AcademicYear ay 

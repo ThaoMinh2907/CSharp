@@ -26,7 +26,6 @@
     <None Remove="DAO\Excel\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTO\" />
     <Folder Include="DAO\" />
     <Folder Include="BUS\" />
     <Folder Include="GUI\" />

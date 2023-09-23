@@ -1819,19 +1819,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\admin\\.nuget\\packages\\": {}
+    "C:\\Users\\Minh Thao\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\admin\\Documents\\GitHub\\CSharp\\CSharpProject\\CSharpProject\\CSharpProject.csproj",
+      "projectUniqueName": "C:\\Users\\Minh Thao\\Documents\\GitHub\\CSharp\\CSharpProject\\CSharpProject\\CSharpProject.csproj",
       "projectName": "CSharpProject",
-      "projectPath": "C:\\Users\\admin\\Documents\\GitHub\\CSharp\\CSharpProject\\CSharpProject\\CSharpProject.csproj",
-      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\admin\\Documents\\GitHub\\CSharp\\CSharpProject\\CSharpProject\\obj\\",
+      "projectPath": "C:\\Users\\Minh Thao\\Documents\\GitHub\\CSharp\\CSharpProject\\CSharpProject\\CSharpProject.csproj",
+      "packagesPath": "C:\\Users\\Minh Thao\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Minh Thao\\Documents\\GitHub\\CSharp\\CSharpProject\\CSharpProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Minh Thao\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
