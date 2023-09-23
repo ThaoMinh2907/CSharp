@@ -28,6 +28,7 @@
   <ItemGroup>
     <Folder Include="DAO\" />
     <Folder Include="BUS\" />
+    <Folder Include="BLL\" />
     <Folder Include="GUI\" />
     <Folder Include="Database\" />
     <Folder Include="DAO\Excel\" />

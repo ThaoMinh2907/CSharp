@@ -12,6 +12,14 @@ namespace CSharpProject.DTO
         public required string Name { get; set; }
         public int maxClassOfGrade { get; set; }
         public int realClassOfGrade { get; set; }
+        public Grade(string iD, string name, int maxClassOfGrade, int realClassOfGrade)
+        {
+            ID = iD;
+            Name = name;
+            this.maxClassOfGrade = maxClassOfGrade;
+            this.realClassOfGrade = realClassOfGrade;
+        }
+
         public Grade() { }
     }
 }
