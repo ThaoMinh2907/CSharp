@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CSharpProject.DTO
 
 {
-    public abstract class People
+    public class People
     {
         public required string ID
         {

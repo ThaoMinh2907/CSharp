@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpProject.DTO
 {
-    public abstract class StudentResult
+    public class StudentResult
     {
         public required string ID {  get; set; }
         public required string studentID {  get; set; }
