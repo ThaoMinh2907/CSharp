@@ -1,0 +1,6 @@
+ID,capacitytName,upperLimit,lowerLimit,paraPoint
+HL000001,Loại giỏi,10,8,"6,5"
+HL000002,Loại khá,8,"6,5",5
+HL000003,Loại trung bình,"6,5",5,"3,5"
+HL000004,Loại Yếu ,5,"3,5",0
+HL000005,Loại kém,"3,5",0,0

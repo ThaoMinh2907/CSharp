@@ -1,0 +1,5 @@
+ID,pointName,coefficient
+DIEMDGTX,Điểm đánh giá thường xuyên,1
+DIEMDGGK,Điểm giữa kỳ,2
+DIEMDGCK,Điểm cuối kỳ,3
+DIEMDGTB,Điểm trung bình môn,1

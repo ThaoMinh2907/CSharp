@@ -1,0 +1,12 @@
+ID,typeofsubjectID,subjectName
+TOAN,MONCHINH,Toán
+NGUVAN,MONCHINH,Ngữ văn
+NGOAINGU,MONCHINH,Tiếng anh
+VATLY,MONCHINH,Vật lý
+HOAHOC,MONCHINH,Hóa học
+SINHHOC,MONCHINH,Sinh học
+LICHSU,MONPHU,Lịch sử
+DIALY,MONPHU,Địa lý
+GDCG,MONPHU,Giáo dục công dân
+THEDUC,MONPHU,Thể dục
+ANNINH,MONPHU,An ninh quốc phòng

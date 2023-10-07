@@ -1,13 +1,17 @@
 ﻿<Properties StartupConfiguration="{DA7C1CCD-0AB8-49FC-B978-1612715EE286}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.CSharpProject PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workbench ActiveDocument="CSharpProject/DAO/initConnect.cs">
     <Files>
-      <File FileName="CSharpProject/Program.cs" Line="52" Column="56" />
-      <File FileName="CSharpProject/DAO/connectExcel.cs" Line="18" Column="32" />
+      <File FileName="CSharpProject/Program.cs" />
+      <File FileName="CSharpProject/DAO/connectExcel.cs" />
       <File FileName="CSharpProject/DAO/connectGGSheet.cs" Line="35" Column="93" />
-      <File FileName="CSharpProject/DAO/initConnect.cs" Line="7" Column="81" />
+      <File FileName="CSharpProject/DAO/initConnect.cs" Line="10" Column="6" />
+      <File FileName="CSharpProject/Database/dbsv.sql" Line="492" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -23,8 +27,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.CSharpProject PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

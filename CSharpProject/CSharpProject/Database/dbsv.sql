@@ -67,7 +67,7 @@ ALTER TABLE Point
 CREATE TABLE Subject(
 	ID VARCHAR(8) NOT NULL,
 	typeofsubjectID VARCHAR(8),
-	subjectName VARCHAR(100),
+	subjectName NVARCHAR(100),
 	PRIMARY KEY (ID, typeofsubjectID)
 )
 
@@ -78,7 +78,7 @@ ALTER TABLE Point
 -- Tạo bảng loại môn học
 CREATE TABLE TypeOfSubject(
 	ID VARCHAR(8) NOT NULL,
-	subjectName VARCHAR(100),
+	subjectName NVARCHAR(100),
 	totalTest INT, -- Tổng bài test thường xuyên của môn học
 	PRIMARY KEY (ID)
 )
@@ -174,7 +174,7 @@ CREATE TABLE Teacher(
 	teacherName NVARCHAR(100),
 	gender NVARCHAR(50),
 	birthday DATETIME,
-	birthplace NVARCHAR(8),
+	birthplace NVARCHAR(100),
 	email VARCHAR(100),
 	phonenumber VARCHAR(11),
 	address NVARCHAR(100),
