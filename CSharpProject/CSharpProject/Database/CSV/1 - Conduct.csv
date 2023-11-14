@@ -1,0 +1,5 @@
+ID,conductName,upperLimit,lowerLimit
+HK000001,Hạnh kiểm tốt,100,75
+HK000002,Hạnh kiểm khá,75,50
+HK000003,Hạnh kiểm trung bình,50,25
+HK000004,Hạnh kiểm yếu,25,0
